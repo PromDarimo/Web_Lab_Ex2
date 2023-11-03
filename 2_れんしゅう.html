@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 30px;
+            height: 30px;
+            border: 1px solid white;
+            color:white;
+            background-color: black;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="table-container"></div>
+
+    <script>
+        function generateRandomNumbers() {
+            var rows = parseInt(prompt("Input Row = "));
+            var columns =  parseInt(prompt("Input Col = "));
+            var min =  parseInt(prompt("Input Min = "));
+            var max =  parseInt(prompt("Input Max = "));
+
+            var tableContainer = document.getElementById("table-container");
+            tableContainer.innerHTML = "";                                                     // Clear previous table, if any
+
+            var table = document.createElement("table");                                       //from id = table
+
+            for (var i = 0; i < rows; i++) {
+                var row = document.createElement("tr");                                        //create tr tag
+
+                for (var j = 0; j < columns; j++) {
+                    var cell = document.createElement("td");                                   //create td tag 
+                                                      
+                    var randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+                    cell.textContent = randomNumber;                                            //<td>{{randomNumber}}</td>
+                    cell.classList.add("box");
+                    row.appendChild(cell);                                                      //add <td>{{randomNumber}}</td> into tr on by one <tr> <td>{{randomNumber}}</td> </tr>
+                }
+
+                table.appendChild(row);
+                //add <tr> <td>{{randomNumber}}</td> </tr> into <table>  <tr> <td>{{randomNumber}}</td> </tr>  </table>
+            }
+            tableContainer.appendChild(table);
+        }
+        generateRandomNumbers();
+    </script>
+</body>
+
+</html>
